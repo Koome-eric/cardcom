@@ -1,6 +1,7 @@
-from flask import Flask, render_template_string
+from flask import Flask, render_template_string, jsonify
 import requests
 import datetime
+import os
 
 app = Flask(__name__)
 
@@ -83,4 +84,5 @@ def page_not_found(e):
     return jsonify({"error": "404", "message": "Page not found"}), 404
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # The following line can be commented out if you only run the app via gunicorn.
+    app.run(host='0.0.0.0', debug=False)  # Set debug to False and host to '0.0.0.0'.
