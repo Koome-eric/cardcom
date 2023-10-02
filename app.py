@@ -38,7 +38,17 @@ def index():
     }
 
     response = requests.post(transactionsEndpoint, json=payload)
-    html_string = "<h1>Extracted Data</h1>"
+
+    html_string = """<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="refresh" content="60"> <!-- Refresh every 60 seconds -->
+        <title>Extracted Data</title>
+    </head>
+    <body>
+        <h1>Extracted Data</h1>
+    """
 
     if response.status_code == 200:
         data = response.json()
@@ -77,6 +87,8 @@ def index():
                 </div>
                 """
 
+    html_string += "</body></html>"
+
     return render_template_string(html_string)
 
 @app.errorhandler(404)
@@ -84,5 +96,4 @@ def page_not_found(e):
     return jsonify({"error": "404", "message": "Page not found"}), 404
 
 if __name__ == '__main__':
-    # The following line can be commented out if you only run the app via gunicorn.
-    app.run(host='0.0.0.0', debug=False)  # Set debug to False and host to '0.0.0.0'.
+    app.run(host='0.0.0.0', debug=False)
