@@ -43,7 +43,7 @@ def index():
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="refresh" content="60"> <!-- Refresh every 60 seconds -->
+        <meta http-equiv="refresh" content="3600"> <!-- Refresh every 3600 seconds -->
         <title>Extracted Data</title>
     </head>
     <body>
